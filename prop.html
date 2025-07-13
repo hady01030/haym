@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Waterfront Villa - Luxury Estates</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+           color: #00ff73;
+        }
+
+        .logo::before {
+            content: "🏠";
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #16a085;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .heart-icon {
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 0;
+            background: #f8f9fa;
+        }
+
+        .breadcrumb a {
+            color: #16a085;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 5px;
+        }
+
+        /* Main Content */
+        .property-header {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .property-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .property-title h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #16a085;
+            font-weight: bold;
+        }
+
+        .location {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .location::before {
+            content: "📍";
+            margin-right: 5px;
+        }
+
+        .property-badges {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background: #16a085;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #16a085;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #138d75;
+        }
+
+        .btn-secondary {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #c0392b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #16a085;
+            color: #16a085;
+        }
+
+        .btn-outline:hover {
+            background: #16a085;
+            color: white;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            position: relative;
+            height: 500px;
+            background: #ddd;
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-images {
+            display: flex;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .gallery-image {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .gallery-prev {
+            left: 10px;
+        }
+
+        .gallery-next {
+            right: 10px;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .content-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #16a085;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Property Details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .detail-value {
+            color: #666;
+        }
+
+        /* Contact Form */
+        .contact-agent {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .agent-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ddd;
+            margin-right: 1rem;
+        }
+
+        .agent-details h3 {
+            margin-bottom: 0.3rem;
+        }
+
+        .agent-details p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        /* Similar Properties */
+        .similar-property {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .similar-property:hover {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .similar-image {
+            width: 80px;
+            height: 80px;
+            background: #ddd;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        .similar-details h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .similar-details p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .similar-price {
+            color: #16a085;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .property-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: #16a085;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Luxury Estates</div>
+                <nav>
+                    <ul>
+                        <li><a href="haym.html" onclick="navigateTo('home')">Home</a></li>
+                        <li><a href="prop.html" onclick="navigateTo('properties')">Properties</a></li>
+                        <li><a href="fav.html" onclick="navigateTo('favorites')">Favorites</a></li>
+                        <li><a href="cont.html" onclick="navigateTo('contact')">Contact</a></li>
+                    </ul>
+
+                    <div class="header" data-aos="fade-down" data-aos-duration="1000">
+
+                </nav>
+                <div class="nav-icons">
+                    <span class="heart-icon">♥</span>
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="#" onclick="navigateTo('home')">Home</a>
+            <span>/</span>
+            <a href="#" onclick="navigateTo('properties')">Properties</a>
+            <span>/</span>
+            <span>Modern Waterfront Villa</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Property Header -->
+        <div class="property-header">
+            <div class="property-title">
+                <div>
+                    <h1>Modern Waterfront Villa</h1>
+                    <div class="location">Exclusive Waterfront District</div>
+                    <div class="property-badges">
+                        <span class="badge">New</span>
+                        <span class="badge">For Sale</span>
+                    </div>
+                </div>
+                <div class="price">$3,800,000</div>
+            </div>
+            <div class="property-actions">
+                <button class="btn btn-outline" onclick="shareProperty()">📤 Share</button>
+                <button class="btn btn-secondary" onclick="toggleFavorite()">♥ Favorite</button>
+            </div>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="gallery-container">
+                <div class="gallery-images" id="galleryImages">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2075&q=80')"></div>
+                </div>
+                <button class="gallery-nav gallery-prev" onclick="previousImage()">❮</button>
+                <button class="gallery-nav gallery-next" onclick="nextImage()">❯</button>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <div>
+                <!-- Description -->
+                <div class="content-section fade-in">
+                    <h2>Description</h2>
+                    <p class="description">
+                        Architectural masterpiece with direct waterfront access. This modern villa combines contemporary design with natural elements, featuring floor-to-ceiling windows, infinity pool, and private dock. A true paradise for luxury living.
+                    </p>
+                </div>
+
+                <!-- Features -->
+                <div class="content-section fade-in">
+                    <h2>Features & Amenities</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">Waterfront Location</div>
+                        <div class="feature-item">Infinity Pool</div>
+                        <div class="feature-item">Private Dock</div>
+                        <div class="feature-item">Smart Home Technology</div>
+                        <div class="feature-item">Chef's Kitchen</div>
+                        <div class="feature-item">Home Gym</div>
+                        <div class="feature-item">Wine Room</div>
+                        <div class="feature-item">Garden & Landscaping</div>
+                    </div>
+                </div>
+
+                <!-- Property Details -->
+                <div class="content-section fade-in">
+                    <h2>Property Details</h2>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Bedrooms:</span>
+                            <span class="detail-value">5</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Property Type:</span>
+                            <span class="detail-value">Villa</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Bathrooms:</span>
+                            <span class="detail-value">4</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Parking:</span>
+                            <span class="detail-value">3 Garage Spaces</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Square Feet:</span>
+                            <span class="detail-value">4,500</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Furnished:</span>
+                            <span class="detail-value">Semi-Furnished</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Year Built:</span>
+                            <span class="detail-value">2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Condition:</span>
+                            <span class="detail-value">New Construction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="content-section fade-in">
+                    <h2>Location</h2>
+                    <h3>📍 Exclusive Waterfront District</h3>
+                    <p>Located in the prestigious Exclusive Waterfront District area, this property offers easy access to amenities, transportation, and entertainment options.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div>
+                <!-- Contact Agent -->
+                <div class="contact-agent fade-in">
+                    <h2>Contact Agent</h2>
+                    <div class="agent-info">
+                        <div class="agent-avatar" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover;"></div>
+                        <div class="agent-details">
+                            <h3>John Smith</h3>
+                            <p>Senior Real Estate Agent</p>
+                        </div>
+                    </div>
+                    <form class="contact-form" onsubmit="submitContactForm(event)">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">📧 Send Message</button>
+                    </form>
+                    <div class="contact-info">
+                        <p>📞 +1 234 567 8900</p>
+                        <p>📧 john@luxuryestates.com</p>
+                    </div>
+                </div>
+
+                <!-- Similar Properties -->
+                <div class="content-section fade-in">
+                    <h2>Similar Properties</h2>
+                    <div class="similar-property" onclick="viewProperty('mountain-villa')">
+                        <div class="similar-image" style="background-image: url('https://images.unsplash.com/photo-1600047509358-9dc75507daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover;"></div>
+                        <div class="similar-details">
+                            <h4>Contemporary Mountain Villa</h4>
+                            <p>📍 Mountain View Estates</p>
+                            <p class="similar-price">$3,200,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Luxury Estates</h3>
+                    <p>Your trusted partner in finding the perfect home. We specialize in luxury properties and exceptional service.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="navigateTo('home')">Home</a></li>
+                        <li><a href="#" onclick="navigateTo('properties')">Properties</a></li>
+                        <li><a href="#" onclick="navigateTo('favorites')">Favorites</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="#" onclick="filterProperties('apartments')">Apartments</a></li>
+                        <li><a href="#" onclick="filterProperties('villas')">Villas</a></li>
+                        <li><a href="#" onclick="filterProperties('townhouses')">Townhouses</a></li>
+                        <li><a href="#" onclick="filterProperties('penthouses')">Penthouses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Luxury Street, City, Country</p>
+                    <p>📞 +1 234 567 8900</p>
+                    <p>📧 info@luxuryestates.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Luxury Estates. All rights reserved. | Designed with ❤️ for you</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Global variables
+        let currentImageIndex = 0;
+        const totalImages = 3;
+        let isFavorited = false;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to elements
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.animationDelay = `${index * 0.1}s`;
+                }, index * 100);
+            });
+        });
+
+        // Image gallery functions
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            updateGallery();
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const gallery = document.getElementById('galleryImages');
+            gallery.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+        }
+
+        // Navigation functions
+        function navigateTo(page) {
+            showNotification(`Navigating to ${page}...`, 'success');
+            // In a real application, this would handle routing
+            console.log(`Navigation to ${page} page`);
+        }
+
+        function filterProperties(type) {
+            showNotification(`Filtering properties by ${type}...`, 'success');
+            console.log(`Filtering properties by ${type}`);
+        }
+
+        function viewProperty(propertyId) {
+            showNotification(`Loading property details...`, 'success');
+            console.log(`Viewing property: ${propertyId}`);
+        }
+
+        // Property actions
+        function shareProperty() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Modern Waterfront Villa',
+                    text: 'Check out this amazing waterfront villa!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    showNotification('Property link copied to clipboard!', 'success');
+                }).catch(() => {
+                    showNotification('Unable to copy link', 'error');
+                });
+            }
+        }
+
+        function toggleFavorite() {
+            isFavorited = !isFavorited;
+            const button = event.target;
+            
+            if (isFavorited) {
+                button.style.background = '#e74c3c';
+                button.innerHTML = '♥ Favorited';
+                showNotification('Added to favorites!', 'success');
+            } else {
+                button.style.background = '#e74c3c';
+                button.innerHTML = '♡ Favorite';
+                showNotification('Removed from favorites', 'success');
+            }
+        }
+
+        // Contact form
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulate form submission
+            showNotification('Sending message...', 'success');
+            
+            // Simulate API call
+            setTimeout(() => {
+                showNotification('Message sent successfully! John will contact you soon.', 'success');
+                // Reset form
+                document.querySelector('.contact-form').reset();
+            }, 2000);
+            
+            // In a real application, you would send this data to a server
+            console.log('Form submitted:', { name, email, phone, message });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto-play gallery (optional)
+        let autoPlayInterval;
+        
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextImage, 5000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        // Start auto-play when page loads
+        // startAutoPlay();
+        
+        // Stop auto-play when user interacts with gallery
+        document.querySelector('.gallery-prev').addEventListener('click', stopAutoPlay);
+        document.querySelector('.gallery-next').addEventListener('click', stopAutoPlay);
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+            });
+        });
+
+        function validateField(field) {
+            const value = field.value.trim();
+            if (field.hasAttribute('required') && !value) {
+                field.classList.add('invalid');
+            } else {
+                field.classList.remove('invalid');
+            }
+        }
